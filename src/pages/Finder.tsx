@@ -25,30 +25,31 @@ export function Finder() {
 
   useEffect(() => {
     const fetchUsers = async () => {
-      if (!profile) {
-        setLoading(false);
-        return;
-      }
-      
       try {
         const q = query(collection(db, 'users'));
-        const interactionsQ = query(collection(db, 'interactions'), where('fromUserId', '==', profile.uid));
+        let targetInteractions: Record<string, string> = {};
         
-        // Fetch users and interactions in parallel to optimize loading speed
-        const [querySnapshot, interactionsSnap] = await Promise.all([
-          getDocs(q),
-          getDocs(interactionsQ)
-        ]);
+        let users: any[] = [];
         
-        const users = querySnapshot.docs.map(doc => doc.data());
+        // If user is logged in, fetch interactions too
+        if (profile) {
+          const interactionsQ = query(collection(db, 'interactions'), where('fromUserId', '==', profile.uid));
+          const [querySnapshot, interactionsSnap] = await Promise.all([
+            getDocs(q),
+            getDocs(interactionsQ)
+          ]);
+          
+          users = querySnapshot.docs.map(doc => doc.data());
+          interactionsSnap.docs.forEach(doc => {
+            const data = doc.data();
+            targetInteractions[data.toUserId] = data.type;
+          });
+        } else {
+          // If not logged in, just fetch the users
+          const querySnapshot = await getDocs(q);
+          users = querySnapshot.docs.map(doc => doc.data());
+        }
         
-        const targetInteractions: Record<string, string> = {};
-        interactionsSnap.docs.forEach(doc => {
-          const data = doc.data();
-          targetInteractions[data.toUserId] = data.type;
-        });
-        
-        // User wants to see their own profile too in the respective section
         const allUsers = users; 
         
         setPotentialMatches(allUsers);
