@@ -169,6 +169,16 @@ export function Landing() {
         
         <div className="flex items-center gap-4">
           <div className="hidden md:flex items-center gap-6 mr-4">
+            <Link to="/" className={`text-sm font-medium flex items-center gap-1 text-pink-500`}>
+              <Heart className="w-4 h-4" /> হোম
+            </Link>
+            <Link to="/app/matches" className={`text-sm font-medium flex items-center gap-1 text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white`}>
+              <MessageCircle className="w-4 h-4" /> কথা
+            </Link>
+            <Link to="/app/profile" className={`text-sm font-medium flex items-center gap-1 text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white`}>
+              <User className="w-4 h-4" /> প্রোফাইল
+            </Link>
+            <div className="w-px h-4 bg-gray-300 dark:bg-gray-700 mx-2"></div>
             <Link to="/about" className="text-sm font-medium text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">আমাদের সম্পর্কে</Link>
             <Link to="/privacy" className="text-sm font-medium text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">প্রাইভেসি পলিসি</Link>
             <Link to="/blog" className="text-sm font-medium text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">ব্লগ</Link>
@@ -289,7 +299,7 @@ export function Landing() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 w-full text-left mb-24 px-4 sm:px-6 max-w-6xl mx-auto overflow-hidden">
           
           {/* Love Quiz */}
-          <div className="bg-pink-50 dark:bg-pink-950/30 p-6 sm:p-8 rounded-3xl border border-pink-100 dark:border-pink-900/50 flex flex-col w-full overflow-hidden">
+          <div className="bg-pink-50 dark:bg-pink-950/30 p-6 sm:p-8 rounded-3xl border border-pink-100 dark:border-pink-900/50 flex flex-col w-full overflow-hidden h-full">
             <div className="flex items-center gap-3 mb-4">
               <div className="p-3 bg-pink-100 dark:bg-pink-900 rounded-xl">
                 <HelpCircle className="w-6 h-6 text-pink-600 dark:text-pink-400" />
@@ -299,11 +309,13 @@ export function Landing() {
             <p className="text-pink-800 dark:text-pink-200 mb-6">
               প্রেম করার যোগ্য কি না, সেটা আগে টেস্ট করে নিন।
             </p>
-            <LoveQuiz customQuestions={quizzes} />
+            <div className="flex-1 flex flex-col justify-center">
+              <LoveQuiz customQuestions={quizzes} />
+            </div>
           </div>
 
           {/* Sad Posts / Testimonials */}
-          <div className="bg-blue-50 dark:bg-blue-950/30 p-6 sm:p-8 rounded-3xl border border-blue-100 dark:border-blue-900/50 flex flex-col w-full overflow-hidden">
+          <div className="bg-blue-50 dark:bg-blue-950/30 p-6 sm:p-8 rounded-3xl border border-blue-100 dark:border-blue-900/50 flex flex-col w-full overflow-hidden h-full">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-3">
                 <div className="p-3 bg-blue-100 dark:bg-blue-900 rounded-xl">
@@ -458,7 +470,7 @@ export function Landing() {
           </div>
 
           {/* Relationship Roadmap */}
-          <div className="bg-purple-50 dark:bg-purple-950/30 p-6 sm:p-8 rounded-3xl border border-purple-100 dark:border-purple-900/50 w-full overflow-hidden">
+          <div className="bg-purple-50 dark:bg-purple-950/30 p-6 sm:p-8 rounded-3xl border border-purple-100 dark:border-purple-900/50 w-full overflow-hidden flex flex-col h-full">
             <div className="flex items-center gap-3 mb-4">
               <div className="p-3 bg-purple-100 dark:bg-purple-900 rounded-xl">
                 <Map className="w-6 h-6 text-purple-600 dark:text-purple-400" />
@@ -469,7 +481,7 @@ export function Landing() {
               কোথায় শুরু, কোথায় শেষ? জেনে নিন প্রেমের আঁকাবাঁকা রাস্তার ম্যাপ।
             </p>
             
-            <div className="relative w-full group">
+            <div className="relative w-full group flex-1 flex flex-col justify-center my-auto min-h-[300px]">
               {/* Desktop Navigation Arrows */}
               <button 
                 onClick={() => {
@@ -524,7 +536,7 @@ export function Landing() {
           </div>
 
           {/* Survival Guide */}
-          <div className="bg-green-50 dark:bg-green-950/30 p-6 sm:p-8 rounded-3xl border border-green-100 dark:border-green-900/50 w-full overflow-hidden">
+          <div className="bg-green-50 dark:bg-green-950/30 p-6 sm:p-8 rounded-3xl border border-green-100 dark:border-green-900/50 w-full overflow-hidden flex flex-col h-full">
             <div className="flex items-center gap-3 mb-4">
               <div className="p-3 bg-green-100 dark:bg-green-900 rounded-xl">
                 <BookOpen className="w-6 h-6 text-green-600 dark:text-green-400" />
@@ -534,7 +546,7 @@ export function Landing() {
             <p className="text-green-800 dark:text-green-200 mb-6">
               সম্পর্ক টিকিয়ে রাখার কিছু অব্যর্থ (বা ব্যর্থ) টিপস। এগুলো মানলে প্রেম টিকতেও পারে, আবার ভাঙতেও পারে।
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 flex-1 content-start">
               <div className="bg-white dark:bg-gray-900 p-4 rounded-2xl shadow-sm border-l-4 border-red-500 flex items-start gap-3 hover:shadow-md transition-shadow">
                 <div className="text-2xl mt-1">🚫</div>
                 <div>
@@ -581,7 +593,7 @@ export function Landing() {
           </div>
 
           {/* Premer Picture Gallery Demo */}
-          <div className="bg-pink-50 dark:bg-pink-950/30 p-6 sm:p-8 rounded-3xl border border-pink-100 dark:border-pink-900/50 w-full overflow-hidden mt-8 mb-4">
+          <div className="bg-pink-50 dark:bg-pink-950/30 p-6 sm:p-8 rounded-3xl border border-pink-100 dark:border-pink-900/50 w-full overflow-hidden mb-4 md:col-span-2 flex flex-col h-full">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
                <div className="flex items-center gap-3">
                  <div className="p-3 bg-pink-100 dark:bg-pink-900 rounded-xl">
@@ -627,10 +639,48 @@ export function Landing() {
             </div>
           </div>
 
+          {/* Shopoth Section */}
+          <div className="bg-orange-50 dark:bg-orange-950/30 p-6 sm:p-8 rounded-3xl border border-orange-100 dark:border-orange-900/50 w-full overflow-hidden mb-4 md:col-span-2 flex flex-col h-full">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="p-3 bg-orange-100 dark:bg-orange-900 rounded-xl">
+                 <Shield className="w-6 h-6 text-orange-600 dark:text-orange-400" />
+              </div>
+              <div>
+                <h2 className="text-2xl font-bold text-orange-900 dark:text-orange-100 text-left">শপথ গ্রহণ</h2>
+                <p className="text-sm text-orange-700 dark:text-orange-300 text-left">প্রেমের ময়দানে নামার আগে শপথ নিয়ে নিন</p>
+              </div>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+               <div className="bg-white dark:bg-gray-900 p-6 rounded-2xl shadow-sm border border-orange-100 dark:border-orange-800 hover:shadow-md transition-shadow">
+                 <h3 className="text-lg font-bold text-orange-600 mb-3 flex items-center gap-2"><Heart className="w-5 h-5" /> প্রেমের শপথ</h3>
+                 <p className="text-sm text-gray-600 dark:text-gray-400">"আমি শপথ করিতেছি যে, আমি আমার পার্টনারের মেসেজের রিপ্লাই ৫ মিনিটের মধ্যে দিবো, তার সব গার্বেজ জোকসে হাসবো এবং কখনোই তার ফোনের পাসওয়ার্ড চাইবো না।"</p>
+               </div>
+               <div className="bg-white dark:bg-gray-900 p-6 rounded-2xl shadow-sm border border-orange-100 dark:border-orange-800 hover:shadow-md transition-shadow">
+                 <h3 className="text-lg font-bold text-orange-600 mb-3 flex items-center gap-2"><Frown className="w-5 h-5" /> ছ্যাঁকা খাওয়ার শপথ</h3>
+                 <p className="text-sm text-gray-600 dark:text-gray-400">"আমি শপথ করিতেছি যে, ছ্যাঁকা খাওয়ার পর আমি দেবদাস হবো না, রাতে স্যাড সং শুনবো না এবং সোশ্যাল মিডিয়াতে স্যাড স্ট্যাটাস দিয়ে সিমপপ্যাথি কুড়াবো না।"</p>
+               </div>
+               <div className="bg-white dark:bg-gray-900 p-6 rounded-2xl shadow-sm border border-orange-100 dark:border-orange-800 hover:shadow-md transition-shadow">
+                 <h3 className="text-lg font-bold text-orange-600 mb-3 flex items-center gap-2"><AlertTriangle className="w-5 h-5" /> ব্রেকআপের শপথ</h3>
+                 <p className="text-sm text-gray-600 dark:text-gray-400">"আমি শপথ করিতেছি যে, ব্রেকআপের পর আমি আমার Ex-এর আইডিতে ফেইক একাউন্ট দিয়ে স্ট্যাক করবো না, ভালো থাকার অভিনয় করবো এবং মুভ অন করবো।"</p>
+               </div>
+            </div>
+          </div>
+
         </div>
+
+        {/* Footer */}
+        <footer className="w-full text-center pb-8 pt-10 mt-8 border-t border-gray-200 dark:border-gray-800">
+          <p className="text-gray-500 dark:text-gray-400 text-sm">
+            &copy; {new Date().getFullYear()} PremerBazar. All rights reserved.
+          </p>
+          <p className="text-gray-400 dark:text-gray-500 text-xs mt-2">
+            Developed with <Heart className="w-3 h-3 inline text-pink-500 mx-0.5" /> by <a href="#" target="_blank" rel="noopener noreferrer" className="hover:text-pink-500 transition-colors font-medium">Developer</a>
+          </p>
+        </footer>
       </main>
 
-      <nav className="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 pb-safe sticky bottom-0 z-50">
+      <nav className="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 pb-safe sticky bottom-0 z-50 md:hidden">
         <div className="flex justify-around items-center h-16 max-w-md mx-auto">
           <NavItem to="/" icon={<Heart />} label="হোম" active={location.pathname === '/'} />
           <NavItem to="/app/matches" icon={<MessageCircle />} label="কথা" active={location.pathname.startsWith('/app/matches')} />
