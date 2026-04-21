@@ -1,0 +1,112 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Global Default Deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+    
+    function isAdmin() {
+      return isSignedIn() && request.auth.token.email == 'mdmahbubsite@gmail.com';
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    match /users/{userId} {
+      // Anyone signed in can list profiles for finding matches.
+      allow list: if isSignedIn();
+      allow get: if isSignedIn() && isValidId(userId);
+      
+      // User can create their own profile
+      allow create: if isSignedIn() && request.auth.uid == userId;
+                    
+      // User can update their own profile, admin can too
+      allow update: if (isSignedIn() && request.auth.uid == userId) 
+                    || isAdmin()
+                    || (isSignedIn() && (incoming().diff(existing()).affectedKeys().hasOnly(['likesCount']) || incoming().diff(existing()).affectedKeys().hasOnly(['dislikesCount'])));
+      
+      // Only Admin can delete a user
+      allow delete: if isAdmin();
+    }
+
+    match /interactions/{interactionId} {
+      // Users can list and get interactions if they are involved
+      allow list, get: if isAdmin() || (isSignedIn() && (resource.data.fromUserId == request.auth.uid || resource.data.toUserId == request.auth.uid));
+      
+      // User can create an interaction if they are the sender
+      allow create: if isSignedIn() 
+                    && incoming().fromUserId == request.auth.uid;
+                    
+      // Only admin can mess with existing interactions
+      allow update, delete: if isAdmin();
+    }
+
+    match /matches/{matchId} {
+      allow list, get: if isAdmin() || (isSignedIn() && request.auth.uid in resource.data.users);
+      allow create: if isSignedIn() && request.auth.uid in incoming().users;
+      allow update: if isAdmin() || (isSignedIn() && request.auth.uid in resource.data.users && request.auth.uid in incoming().users);
+      allow delete: if isAdmin();
+      
+      match /messages/{messageId} {
+        allow read: if isAdmin() || (
+          isSignedIn() && 
+          request.auth.uid in get(/databases/$(database)/documents/matches/$(matchId)).data.users
+        );
+        allow create: if isSignedIn() 
+                      && incoming().senderId == request.auth.uid
+                      && request.auth.uid in get(/databases/$(database)/documents/matches/$(matchId)).data.users;
+        allow update, delete: if isAdmin();
+      }
+    }
+
+    // Admin Content Collections (Blogs, Quizzes, Sad Posts, Roadmaps, Guides)
+    // - Everyone can read.
+    // - Only Admin can create, update, delete.
+
+    match /blogs/{blogId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /quizzes/{quizId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /sad_posts/{postId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /roadmaps/{roadmapId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /guides/{guideId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /pictures/{pictureId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+  }
+}

@@ -1,0 +1,129 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile data",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "name": { "type": "string" },
+        "age": { "type": "number" },
+        "gender": { "type": "string" },
+        "lookingFor": { "type": "string" },
+        "bio": { "type": "string" },
+        "redFlags": { "type": "string" },
+        "greenFlags": { "type": "string" },
+        "whyDateMe": { "type": "string" },
+        "relationshipStatus": { "type": "string" },
+        "ratingAverage": { "type": "number" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email", "name"]
+    },
+    "Interaction": {
+      "title": "Interaction",
+      "description": "Like/Dislike record",
+      "type": "object",
+      "properties": {
+        "fromUserId": { "type": "string" },
+        "toUserId": { "type": "string" },
+        "type": { "type": "string", "enum": ["like", "dislike"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["fromUserId", "toUserId", "type"]
+    },
+    "Blog": {
+      "title": "Blog",
+      "description": "Blog and vlog posts",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "excerpt": { "type": "string" },
+        "content": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["title", "content"]
+    },
+    "SadPost": {
+      "title": "SadPost",
+      "description": "Sad post text",
+      "type": "object",
+      "properties": {
+        "text": { "type": "string" },
+        "author": { "type": "string" },
+        "theme": { "type": "string" },
+        "likes": { "type": "number" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["text", "author"]
+    },
+    "Quiz": {
+      "title": "Quiz",
+      "description": "Prem quiz questions",
+      "type": "object",
+      "properties": {
+        "question": { "type": "string" },
+        "options": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["question", "options"]
+    },
+    "Roadmap": {
+      "title": "Roadmap",
+      "description": "Relationship roadmap steps",
+      "type": "object",
+      "properties": {
+        "icon": { "type": "string" },
+        "title": { "type": "string" },
+        "desc": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["title", "desc"]
+    },
+    "Guide": {
+      "title": "Guide",
+      "description": "Survival guide pieces",
+      "type": "object",
+      "properties": {
+        "icon": { "type": "string" },
+        "title": { "type": "string" },
+        "desc": { "type": "string" },
+        "color": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["title", "desc"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/User" },
+      "description": "Stores user profiles"
+    },
+    "/interactions/{interactionId}": {
+      "schema": { "$ref": "#/entities/Interaction" },
+      "description": "Stores swipe interactions"
+    },
+    "/blogs/{blogId}": {
+      "schema": { "$ref": "#/entities/Blog" },
+      "description": "Stores blog posts"
+    },
+    "/sad_posts/{postId}": {
+      "schema": { "$ref": "#/entities/SadPost" },
+      "description": "Stores sad posts entries"
+    },
+    "/quizzes/{quizId}": {
+      "schema": { "$ref": "#/entities/Quiz" },
+      "description": "Stores quiz questions"
+    },
+    "/roadmaps/{roadmapId}": {
+      "schema": { "$ref": "#/entities/Roadmap" },
+      "description": "Stores roadmaps milestones"
+    },
+    "/guides/{guideId}": {
+      "schema": { "$ref": "#/entities/Guide" },
+      "description": "Stores dating survival guides"
+    }
+  }
+}
