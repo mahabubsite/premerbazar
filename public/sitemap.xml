@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Home Page -->
+  <url>
+    <loc>https://premerbazar.vercel.app/</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <!-- Finder / GF BF Hunt Page (Publicly Viewable now) -->
+  <url>
+    <loc>https://premerbazar.vercel.app/find</loc>
+    <changefreq>always</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <!-- Gallery Page -->
+  <url>
+    <loc>https://premerbazar.vercel.app/gallery</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Blog Page -->
+  <url>
+    <loc>https://premerbazar.vercel.app/blog</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- About Us -->
+  <url>
+    <loc>https://premerbazar.vercel.app/about</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <!-- Privacy Policy -->
+  <url>
+    <loc>https://premerbazar.vercel.app/privacy</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <!-- Report Page -->
+  <url>
+    <loc>https://premerbazar.vercel.app/report</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+</urlset>
