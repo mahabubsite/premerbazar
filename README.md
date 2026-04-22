@@ -1,12 +1,12 @@
-# ❤️ PremerBazar ([https://premerbazar.vercel.app](https://premerbazar.vercel.app))
+# ❤️ Premer Bazar ([https://premerbazar.vercel.app](https://premerbazar.vercel.app))
 
 ### PremerBazar – The Ultimate Satirical Love-Finding Web App
 
-🔗 **PremerBazar Live Site:** [https://premerbazar.vercel.app](https://premerbazar.vercel.app)
+🔗 **Premer Bazar Live Site:** [https://premerbazar.vercel.app](https://premerbazar.vercel.app)
 
 ---
 
-## 🌐 What is PremerBazar?
+## 🌐 What is Premer Bazar?
 
 **PremerBazar ([https://premerbazar.vercel.app](https://premerbazar.vercel.app))** is a fun, satire-based love finding web application where users can post, browse, and explore potential girlfriends, boyfriends, and crushes — all in one place.
 
@@ -22,7 +22,7 @@ premer bazar, premerbazar, premerbazar vercel app, [https://premerbazar.vercel.a
 
 ---
 
-## 🚀 Features of PremerBazar
+## 🚀 Features of Premer Bazar
 
 * 💘 Add Girlfriend / Boyfriend profiles on **PremerBazar**
 * 🔎 Browse all users in one unified feed on [https://premerbazar.vercel.app](https://premerbazar.vercel.app)
@@ -35,12 +35,12 @@ premer bazar, premerbazar, premerbazar vercel app, [https://premerbazar.vercel.a
 
 ---
 
-## 🧠 Concept Behind PremerBazar
+## 🧠 Concept Behind Premer Bazar
 
 In a world where dating apps are overly serious and sometimes fake, **PremerBazar ([https://premerbazar.vercel.app](https://premerbazar.vercel.app))** takes a different route.
 
 👉 It allows users to express, explore, and even joke about relationships.
-👉 Anyone can post what they’re looking for on PremerBazar.
+👉 Anyone can post what they’re looking for on Premer Bazar.
 👉 Everything shows in one open marketplace style feed.
 
 Think of it like a **“love marketplace” with a twist of humor.”**
@@ -49,9 +49,9 @@ Visit: [https://premerbazar.vercel.app](https://premerbazar.vercel.app)
 
 ---
 
-## 📈 Why PremerBazar Can Rank on Google
+## 📈 Why Premer Bazar Can Rank on Google
 
-* Unique keyword: **PremerBazar** (low competition)
+* Unique keyword: **Premer Bazar** (low competition)
 * Direct branded search: [https://premerbazar.vercel.app](https://premerbazar.vercel.app)
 * Niche: Satire + Dating (high curiosity factor)
 * Language mix: Bangla + English (dual audience reach)
@@ -63,7 +63,7 @@ Visit: [https://premerbazar.vercel.app](https://premerbazar.vercel.app)
 ## 🏷️ Alternative Search Keywords
 
 * premerbazar website
-* premerbazar vercel app
+* premer bazar vercel app
 * [https://premerbazar.vercel.app](https://premerbazar.vercel.app)
 * bangladesh girlfriend finder
 * prem korar website
@@ -98,7 +98,7 @@ Visit: [https://premerbazar.vercel.app](https://premerbazar.vercel.app)
 
 ---
 
-## ⭐ Support PremerBazar
+## ⭐ Support Premer Bazar
 
 If you like **PremerBazar**:
 
@@ -108,7 +108,7 @@ If you like **PremerBazar**:
 
 ---
 
-## 🔗 Direct Access to PremerBazar
+## 🔗 Direct Access to Premer Bazar
 
 👉 [https://premerbazar.vercel.app](https://premerbazar.vercel.app)
 👉 [https://premerbazar.vercel.app](https://premerbazar.vercel.app)
@@ -116,7 +116,7 @@ If you like **PremerBazar**:
 
 ---
 
-## 🧩 Future Plans for PremerBazar
+## 🧩 Future Plans for Premer Bazar
 
 * User profiles & filtering
 * Like / react system
@@ -127,7 +127,7 @@ If you like **PremerBazar**:
 
 ## 📌 Final Note
 
-**PremerBazar ([https://premerbazar.vercel.app](https://premerbazar.vercel.app))** isn’t just a website — it’s a vibe.
+**Premer Bazar ([https://premerbazar.vercel.app](https://premerbazar.vercel.app))** isn’t just a website — it’s a vibe.
 
 If you ever searched for:
 
