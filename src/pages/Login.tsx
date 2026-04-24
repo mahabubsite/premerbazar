@@ -141,10 +141,13 @@ export function Login() {
                 ? (isSignUp ? 'ইমেইল দিয়ে অ্যাকাউন্ট লিংক করুন' : 'বর্তমান অ্যাকাউন্টে লগইন করুন')
                 : (isSignUp ? 'নতুন অ্যাকাউন্ট খুলুন' : 'স্বাগতম ফিরে আসার জন্য')}
             </h2>
-            <p className="text-gray-500 dark:text-gray-400">
+            <p className="text-gray-500 dark:text-gray-400 mb-2">
               {user?.isAnonymous 
                 ? (isSignUp ? 'আপনার বর্তমান বেনামি ডেটা সেভ করতে একটি নতুন ইমেইল ও পাসওয়ার্ড দিন।' : 'আপনার আগে থেকে খোলা অ্যাকাউন্ট থাকলে লগইন করুন। (বর্তমান বেনামি ডেটা মুছে যাবে)')
                 : (isSignUp ? 'আপনার ডিটেইলস দিয়ে শুরু করুন।' : 'লগইন করে আপনার ত্রুটিপূর্ণ ম্যাচ খোঁজা শুরু করুন।')}
+            </p>
+            <p className="text-xs font-medium text-pink-600 dark:text-pink-400 bg-pink-50 dark:bg-pink-900/30 p-2 rounded-lg border border-pink-100 dark:border-pink-800/50">
+              <span className="font-bold">মজার বিষয়:</span> আপনার আসল ইনফরমেশন বা জিমেইল লাগবে না! যেকোনো ভুয়া (Fake) ইমেইল আর পাসওয়ার্ড দিয়ে অ্যাকাউন্ট খুলতে পারেন, শুধু পরের বার লগইন করার জন্য মনে রাখলেই হবে।
             </p>
           </div>
 
