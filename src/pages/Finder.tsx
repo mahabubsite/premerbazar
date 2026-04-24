@@ -22,10 +22,19 @@ export function Finder() {
   const [interactions, setInteractions] = useState<Record<string, string>>(globalInteractions);
   const [loading, setLoading] = useState(globalPotentialMatches.length === 0);
   const [searchTerm, setSearchTerm] = useState('');
+  const [showGuestPopup, setShowGuestPopup] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
+
+  useEffect(() => {
+    if (!user && !localStorage.getItem('hasSeenGuestPopup')) {
+      setShowGuestPopup(true);
+    }
+  }, [user]);
 
   useEffect(() => {
     const fetchUsers = async () => {
       try {
+        setErrorMsg("");
         const q = query(collection(db, 'users'));
         let targetInteractions: Record<string, string> = {};
         
@@ -56,8 +65,9 @@ export function Finder() {
         setInteractions(targetInteractions);
         globalPotentialMatches = allUsers;
         globalInteractions = targetInteractions;
-      } catch (error) {
+      } catch (error: any) {
         console.error("Error fetching users:", error);
+        setErrorMsg(error.message || "Unknown error fetching data");
       } finally {
         setLoading(false);
       }
@@ -73,6 +83,8 @@ export function Finder() {
     if (!user) {
       if (type === 'like') {
         alert("ম্যাচ করতে হলে আগে লগইন করুন!");
+      } else {
+        alert("ইন্টারেক্ট করতে হলে আগে লগইন করুন!");
       }
       return;
     }
@@ -159,7 +171,7 @@ export function Finder() {
 
   const filteredMatches = potentialMatches.filter(p => {
     // text search
-    if (searchTerm && !p.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+    if (searchTerm && (!p.name || !p.name.toLowerCase().includes(searchTerm.toLowerCase()))) {
       return false;
     }
     // direct hunt target filtering
@@ -192,6 +204,19 @@ export function Finder() {
         </div>
       </div>
       
+      {errorMsg && (
+        <div className="bg-red-50 dark:bg-red-900/20 text-red-600 p-4 rounded-xl mb-6 text-center border border-red-100 dark:border-red-800">
+          <AlertTriangle className="w-6 h-6 mx-auto mb-2" />
+          <p className="font-bold">ডাটা লোড করতে সমস্যা হয়েছে</p>
+          <p className="text-sm">{errorMsg}</p>
+        </div>
+      )}
+
+      {/* Debug Info (only shown if things are weird) */}
+      {!loading && !errorMsg && potentialMatches.length === 0 && (
+        <p className="text-xs text-center text-gray-400 mb-2">Debug: 0 users fetched from DB. Current auth: {user ? 'Logged In' : 'Guest'}</p>
+      )}
+
       {filteredMatches.length === 0 ? (
         <div className="flex flex-col items-center justify-center h-full text-center space-y-4 py-12">
           <div className="w-24 h-24 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center mb-4">
@@ -309,6 +334,42 @@ export function Finder() {
               </div>
             </Card>
           ))}
+        </div>
+      )}
+
+      {showGuestPopup && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            className="bg-white dark:bg-gray-900 rounded-3xl p-6 sm:p-8 max-w-sm w-full shadow-2xl border border-pink-100 dark:border-pink-500/20 text-center"
+          >
+            <div className="w-16 h-16 bg-pink-100 dark:bg-pink-900/40 rounded-full flex items-center justify-center mx-auto mb-4">
+              <UserPlus className="w-8 h-8 text-pink-600 dark:text-pink-400" />
+            </div>
+            <h2 className="text-2xl font-bold mb-2">স্বাগতম!</h2>
+            <p className="text-gray-600 dark:text-gray-400 mb-6 text-sm">
+              আপনি কি লগইন করে সব ফিচার উপভোগ করতে চান, নাকি গেস্ট হিসেবে দেখতে চান? লগইন করার সময় কোনো আসল জিমেইলের প্রয়োজন নেই, যেকোনো ফেইক জিমেইল দিলেও হবে!
+            </p>
+            <div className="flex flex-col gap-3">
+              <Button 
+                onClick={() => navigate('/login')}
+                className="w-full bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white rounded-xl h-12 text-lg font-medium"
+              >
+                লগইন করুন
+              </Button>
+              <Button 
+                onClick={() => {
+                  localStorage.setItem('hasSeenGuestPopup', 'true');
+                  setShowGuestPopup(false);
+                }}
+                variant="outline"
+                className="w-full rounded-xl h-12 border-gray-300 text-gray-700 dark:border-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
+              >
+                গেস্ট হিসেবে দেখুন
+              </Button>
+            </div>
+          </motion.div>
         </div>
       )}
     </div>
