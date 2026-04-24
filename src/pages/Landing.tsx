@@ -5,7 +5,7 @@ import { Button } from '../components/ui/button';
 import { Heart, Sparkles, ShieldAlert, Laugh, Frown, Map, HelpCircle, BookOpen, Menu, Info, Shield, FileText, AlertTriangle, MessageCircle, User, Download, Share2, Play, Pause, SkipForward, SkipBack, ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { toJpeg } from 'html-to-image';
-import { collection, getDocs, query, orderBy } from 'firebase/firestore';
+import { collection, getDocs, query, orderBy, addDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '../firebase';
 
 export function Landing() {
@@ -66,15 +66,25 @@ export function Landing() {
     fetchData();
   }, []);
 
-  const handleAddPost = () => {
+  const handleAddPost = async () => {
     if (newPostText.trim()) {
       const themes = ["sad", "broken", "funny", "lovely"];
       const randomTheme = themes[Math.floor(Math.random() * themes.length)];
-      setSadPosts([{ 
+      
+      const newPost = { 
         text: newPostText, 
         author: newPostAuthor.trim() || user?.displayName || "অজ্ঞাতনামা দুঃখী", 
-        theme: randomTheme 
-      }, ...sadPosts]);
+        theme: randomTheme,
+        createdAt: serverTimestamp()
+      };
+
+      try {
+        await addDoc(collection(db, 'sad_posts'), newPost);
+      } catch (err) {
+        console.error("Error adding post to DB", err);
+      }
+
+      setSadPosts([newPost, ...sadPosts]);
       setNewPostText('');
       setNewPostAuthor('');
       setCurrentPostIndex(0);
